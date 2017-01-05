@@ -1,6 +1,6 @@
 <launch>
 	<!--some arguments to use-->	
-	<arg name="model" default="$(find rsc_car)/robots/rsc-car.urdf"/>
+	<arg name="model" default="$(find rsc_car)/robots/rsc_car.urdf"/>
 	<!--arg name="world_name" default="$(find rsc_car)/world/iceira302.world"/-->
 
 	<!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
