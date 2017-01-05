@@ -9,7 +9,7 @@
   </gazebo>
 
   <gazebo reference="base_link">
-    <material>Gazebo/Yellow</material>
+    <material>Gazebo/Grey</material>
   </gazebo>
   
   <gazebo reference="rwheel_link">
@@ -20,7 +20,16 @@
     <kd value="1.0" />
     <fdir1 falue="1 0 0"/>
   </gazebo>
-  
+
+  <gazebo reference="lwheel_link">
+    <material>Gazebo/Black</material>
+    <mu1 value="100.0"/>
+    <mu2 value="100.0"/>
+    <kp value="1000000.0" />
+    <kd value="1.0" />
+    <fdir1 falue="1 0 0"/>
+  </gazebo>
+ 
   <gazebo reference="hokuyo_link">
      <material>Gazebo/Orange</material>
   </gazebo>
