@@ -1,8 +1,7 @@
 <robot
   name="rsc_car">
-  <xacro:include name="$(find rsc_car)/robots/rsc_car.gazebo"/>
-  <xacro:include name="$(find rsc_car)/robots/rsc_car_materials.xacro"/>
-
+  <include filename="$(find rsc_car)/robots/rsc_car.gazebo"/>
+  <include filename="$(find rsc_car)/robots/rsc_car_materials.xacro"/>
   <link
     name="base_link">
     <inertial>
@@ -28,9 +27,7 @@
           filename="package://rsc_car/meshes/base_link.STL" />
       </geometry>
       <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        name="white">
       </material>
     </visual>
     <collision>
@@ -68,9 +65,7 @@
           filename="package://rsc_car/meshes/rwheel_link.STL" />
       </geometry>
       <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        name="black">
       </material>
     </visual>
     <collision>
@@ -88,15 +83,24 @@
     type="continuous">
     <origin
       xyz="0.0600000000000008 -0.167044710646164 -0.0124430740677247"
-      rpy="5.23145878809361E-18 0.358432613686689 4.00757307738389E-17" />
+      rpy="0 0 0" />
     <parent
       link="base_link" />
     <child
       link="rwheel_link" />
     <axis
       xyz="0 -1 0" />
-    <!--dynamics damping="1.0" friction="5.0"/-->
   </joint>
+  <transmission name="rwheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rwheel_joint">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rwheel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
   <link
     name="lwheel_link">
     <inertial>
@@ -122,9 +126,7 @@
           filename="package://rsc_car/meshes/lwheel_link.STL" />
       </geometry>
       <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        name="black">
       </material>
     </visual>
     <collision>
@@ -142,15 +144,24 @@
     type="continuous">
     <origin
       xyz="0.0600000000000003 0.178955289353836 -0.0124430740677254"
-      rpy="-3.14159265358979 -1.34536147726938 3.14159265358979" />
+      rpy="0 0 0" />
     <parent
       link="base_link" />
     <child
       link="lwheel_link" />
     <axis
       xyz="0 1 0" />
-    <!--dynamics damping="0.0" friction="100000000"/-->
   </joint>
+  <transmission name="lwheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lwheel_joint">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lwheel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
   <link
     name="hokuyo_link">
     <inertial>
@@ -176,9 +187,7 @@
           filename="package://rsc_car/meshes/hokuyo_link.STL" />
       </geometry>
       <material
-        name="">
-        <color
-          rgba="0.79216 0.81961 0.93333 1" />
+        name="orange">
       </material>
     </visual>
     <collision>
@@ -196,7 +205,7 @@
     type="fixed">
     <origin
       xyz="0.104999999999999 0.00595528935383606 0.228556925932277"
-      rpy="-3.49148133884313E-15 0 1.5707963267949" />
+      rpy="0 0 0" />
     <parent
       link="base_link" />
     <child
