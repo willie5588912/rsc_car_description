@@ -1,28 +1,29 @@
 <launch>
-	<!--some arguments to use-->	
 	<arg name="model" default="$(find rsc_car)/robots/rsc_car.urdf"/>
 	<!--arg name="world_name" default="$(find rsc_car)/world/iceira302.world"/-->
 
-	<!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
-  <!--include file="$(find gazebo_ros)/launch/willowgarage_world.launch"/-->
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
 		<!--arg name="world_name" default="$(arg world_name)"/-->
   </include>
 
 	<param name="robot_description" command="python $(find xacro)/xacro.py $(arg model)" />
+  <rosparam command="load" file="$(find rsc_car)/config/rsc_car_state.yaml"/>
+  <rosparam command="load" file="$(find rsc_car)/config/rsc_car_diff.yaml"/>
 
-	<!-- push robot_description to factory and spawn robot in gazebo -->
 	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-		args="-x 0 -y 0 -z 0.25 -R 0 -P 0 -Y 0 -unpause -urdf -model beebot -param robot_description" 
+		args="-x 0 -y 0 -z 0.25 -R 0 -P 0 -Y 0 -unpause -urdf -model rsc_car -param robot_description" 
 		respawn="false" output="screen"/> 
 
 	<node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
 	   <param name="publish_frequency" type="double" value="30.0" />
 	</node>
 
-	<node pkg="joint_state_publisher" type="joint_state_publisher"  name="joint_state_publisher">
-	   <param name="publish_frequency" type="double" value="30.0" />
-	</node>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+    args="rsc_car_diff_controller 
+          rsc_car_state_controller"/>
 
-   <!--remap from="/simple_diff_robot/laser/scan" to="/base_scan"/-->
+  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+    <param name="default_topic" value="/rsc_car_diff_controller/cmd_vel"/>
+  </node>
+
 </launch>
