@@ -12,7 +12,7 @@
     </visual>
   </link>
   <joint name="base_footprint_joint" type="fixed">
-    <origin xyz="0 0.00594553148142892 0" rpy="0 0 0" />
+    <origin xyz="0 0 0.1124430740677247" rpy="0 0 0" />
     <child link="base_link" />
     <parent link="base_footprint"/>
   </joint>
@@ -20,7 +20,7 @@
     name="base_link">
     <inertial>
       <origin
-        xyz="0.0 0.00594553148142892 -0.0145768208920385"
+        xyz="0.0 0.0 0.0"
         rpy="0 0 0" />
       <mass
         value="9.63917377366023" />
