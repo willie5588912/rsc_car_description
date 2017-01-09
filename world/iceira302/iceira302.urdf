@@ -1,0 +1,43 @@
+<robot
+  name="iceira302">
+  <link
+    name="iceira302">
+    <inertial>
+      <origin
+        xyz="-0.51712 -1.0217 0.365"
+        rpy="0 0 0" />
+      <mass
+        value="4047.1" />
+      <inertia
+        ixx="39193.2509092066"
+        ixy="6157.56632229109"
+        ixz="-3.10115011202058E-12"
+        iyy="49928.5617336411"
+        iyz="3.49480335895816E-12"
+        izz="88762.3641766561" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iceira302/meshes/iceira302.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iceira302/meshes/iceira302.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>
