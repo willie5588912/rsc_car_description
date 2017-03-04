@@ -1,14 +1,14 @@
 <launch>
-	<arg name="model" default="$(find rsc_car)/robots/rsc_car.urdf"/>
-	<arg name="world_name" default="$(find rsc_car)/world/iceira302.world"/>
+	<arg name="model" default="$(find rsc_car_description)/robots/rsc_car.urdf"/>
+	<arg name="world_name" default="$(find rsc_car_description)/world/iceira302.world"/>
 
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
 		<arg name="world_name" default="$(arg world_name)"/>
   </include>
 
-	<param name="robot_description" command="python $(find xacro)/xacro.py $(arg model)" />
-  <rosparam command="load" file="$(find rsc_car)/config/rsc_car_state.yaml"/>
-  <rosparam command="load" file="$(find rsc_car)/config/rsc_car_diff_sim.yaml"/>
+	<param name="robot_description" command="rosrun xacro xacro.py $(arg model)" />
+  <rosparam command="load" file="$(find rsc_car_description)/config/rsc_car_state.yaml"/>
+  <rosparam command="load" file="$(find rsc_car_description)/config/rsc_car_diff_sim.yaml"/>
 
 	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
 		args="-x 0 -y 0 -z 0.1 -R 0 -P 0 -Y 0 -unpause -urdf -model rsc_car -param robot_description" 
